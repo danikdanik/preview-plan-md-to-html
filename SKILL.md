@@ -13,7 +13,7 @@ Converts a Markdown file (with Mermaid code blocks) to a styled, browser-viewabl
 
 - `pandoc` — `brew install pandoc` (macOS) / `apt install pandoc` (Linux) / `winget install pandoc` (Windows)
 - `node` — nodejs.org
-- This skill must be installed at `~/.claude/skills/preview-plan-md-to-html/` (the script path is hardcoded)
+- This skill must be installed under a directory named `preview-plan-md-to-html/` inside your Claude skills directory (defaults to `~/.claude/skills/`, override with `$CLAUDE_SKILLS_DIR`)
 - Linux only: `xdg-utils` for `xdg-open` (`apt install xdg-utils`)
 - Windows only: Git Bash or WSL required — native CMD/PowerShell will not work
 
@@ -61,7 +61,8 @@ If `file` is not provided, scan the current directory for `.md` files. If exactl
 
 4. **Post-process** (Mermaid injection + styling)
    ```bash
-   node ~/.claude/skills/preview-plan-md-to-html/scripts/postprocess.js "$OUTPUT" "$FILE" "$GIT_INFO" "$DT"
+   SKILL_DIR="${CLAUDE_SKILLS_DIR:-$HOME/.claude/skills}/preview-plan-md-to-html"
+   node "$SKILL_DIR/scripts/postprocess.js" "$OUTPUT" "$FILE" "$GIT_INFO" "$DT"
    ```
 
 5. **Open in browser** (if `open_browser` is true)
