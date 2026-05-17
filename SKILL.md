@@ -1,9 +1,9 @@
 ---
-name: preview-plan-md-as-html
-description: Render any Markdown plan file to a browser-viewable HTML with Mermaid diagrams. Output is ephemeral ($TMPDIR), never committed. Use when user says /preview-plan-md-as-html, wants to preview a markdown file with diagrams, or wants to open a plan in the browser.
+name: preview-plan-md-to-html
+description: Render any Markdown plan file to a browser-viewable HTML with Mermaid diagrams. Output is ephemeral ($TMPDIR), never committed. Use when user says /preview-plan-md-to-html, wants to preview a markdown file with diagrams, or wants to open a plan in the browser.
 ---
 
-# preview-plan-md-as-html
+# preview-plan-md-to-html
 
 Converts a Markdown file (with Mermaid code blocks) to a styled, browser-viewable HTML using pandoc + Mermaid JS CDN.
 
@@ -13,7 +13,7 @@ Converts a Markdown file (with Mermaid code blocks) to a styled, browser-viewabl
 
 - `pandoc` — `brew install pandoc` (macOS) / `apt install pandoc` (Linux) / `winget install pandoc` (Windows)
 - `node` — nodejs.org
-- This skill must be installed at `~/.claude/skills/preview-plan-md-as-html/` (the script path is hardcoded)
+- This skill must be installed at `~/.claude/skills/preview-plan-md-to-html/` (the script path is hardcoded)
 - Linux only: `xdg-utils` for `xdg-open` (`apt install xdg-utils`)
 - Windows only: Git Bash or WSL required — native CMD/PowerShell will not work
 
@@ -25,7 +25,7 @@ Converts a Markdown file (with Mermaid code blocks) to a styled, browser-viewabl
 
 ## No-arg behavior
 
-If `file` is not provided, scan the current directory for `.md` files. If exactly one is found, use it. If multiple exist, list them and ask the user to pick. If none, fail with: `No markdown file found. Usage: /preview-plan-md-as-html <file.md>`
+If `file` is not provided, scan the current directory for `.md` files. If exactly one is found, use it. If multiple exist, list them and ask the user to pick. If none, fail with: `No markdown file found. Usage: /preview-plan-md-to-html <file.md>`
 
 ## Steps
 
@@ -61,7 +61,7 @@ If `file` is not provided, scan the current directory for `.md` files. If exactl
 
 4. **Post-process** (Mermaid injection + styling)
    ```bash
-   node ~/.claude/skills/preview-plan-md-as-html/scripts/postprocess.js "$OUTPUT" "$FILE" "$GIT_INFO" "$DT"
+   node ~/.claude/skills/preview-plan-md-to-html/scripts/postprocess.js "$OUTPUT" "$FILE" "$GIT_INFO" "$DT"
    ```
 
 5. **Open in browser** (if `open_browser` is true)
