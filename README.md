@@ -1,4 +1,4 @@
-# preview-plan-md-to-html
+# Preview Plan: Markdown to HTML skill (preview-plan-md-to-html)
 
 A Claude Code skill that converts Markdown plan files to styled, browser-viewable HTML with Mermaid diagram rendering.
 
